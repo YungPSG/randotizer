@@ -1,11 +1,11 @@
+import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 
-var React = require('react');
 
-export default class Header extends Component {
+export default class Header extends React.Component {
     render(){
         return (
              <header id="header" class="header">

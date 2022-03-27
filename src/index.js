@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from '../Shared/Header';
+import Header from './Components/Shared/Header';
 
 export class App extends React.Component {
     render() {
