@@ -1,6 +1,6 @@
 module.exports = {
     devtool: 'source-map',
-    entry: "./app.tsx",
+    entry: "./app.js",
     mode: "development",
     output: {
         filename: "./app-bundle.js"
@@ -11,11 +11,19 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'ts-loader'
+              test: /\.(jsx|js)$/,
+              exclude: /node_modules/,
+              use: [{
+                loader: 'babel-loader',
+                options: {
+                  presets: [
+                    ['@babel/preset-env', {
+                      "targets": "defaults" 
+                    }],
+                    '@babel/preset-react'
+                  ]
                 }
+              }]
             }
         ]
     }
