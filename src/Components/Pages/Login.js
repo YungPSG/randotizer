@@ -20,7 +20,7 @@ export default function Login() {
     return (
         <div className="login-form-wrapper">
             <form className="login-form nav-text-solar" onSubmit={handleSubmit}>
-                <h1>Create an Account: </h1>
+                <h1 className="login-title">Create an Account: </h1>
                 <label >Username: <input type="text" className="login-input" onChange={handleUserNameChange} value={userName}/></label>
                 <label >Password: <input type="text" className="login-input" onChange={handlePasswordChange} value={password}/></label>
                 <div className="login-button-wrapper">

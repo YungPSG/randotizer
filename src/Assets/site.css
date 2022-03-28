@@ -23,6 +23,28 @@
     margin-left: 40%;
 }
 
+    .login-form input[type=submit] {
+        background: #d33682;
+        color: #fdf6e3 !important;
+        border: none;
+        padding: 5px;
+        border-radius: 10px;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    }
+
+    .login-form input[type=submit]:hover {
+        background: #6c71c4;
+    }
+
+    .login-form input[type=text] {
+        background: #073642;
+        outline: none;
+        border: none;
+        color: #fdf6e3 !important;
+    }
+
 .login-input {
     width: 100%;
     margin-bottom: 1rem;
@@ -30,6 +52,10 @@
 
 .login-form-wrapper {
     width: 100%;
+}
+
+.login-title {
+    text-align: center !important;
 }
 
 .login-button-wrapper {
