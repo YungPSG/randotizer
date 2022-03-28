@@ -1,17 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 
 
-export default class Header extends React.Component {
-    render(){
+export default function Header() {
+    const [name, setName] = useState('Gem');
+
         return (
-             <header id="header" class="header">
+             <header id="header" className="header">
                 <Navbar bg="light" expand="lg">
                 <Container>
-                    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                    <Navbar.Brand href="#home">Randotizer</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -30,5 +31,4 @@ export default class Header extends React.Component {
                 </Navbar>
             </header>
         )
-    }
 }
