@@ -3,7 +3,11 @@ module.exports = {
     entry: "./app.js",
     mode: "development",
     output: {
-        filename: "./app-bundle.js"
+      entry: path.join(__dirname,'/client/index.js'),
+      output: {
+        path: '/',
+        filename: 'bundle.js'
+      }
     },
     resolve: {
         extensions: ['.Webpack.js', '.web.js', '.ts', '.js', '.jsx', '.tsx']

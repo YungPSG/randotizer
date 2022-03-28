@@ -18,12 +18,12 @@ export default function Login() {
     }
     
     return (
-        <h1>
-            <form onSubmit={handleSubmit}>
-                <input type="text" onChange={handleUserNameChange} value={userName}/>
-                <input type="text" onChange={handlePasswordChange} value={password}/>
+        <div className="login-form-wrapper">
+            <form className="login-form" onSubmit={handleSubmit}>
+                <label>Username: <input type="text" onChange={handleUserNameChange} value={userName}/></label>
+                <label>Password: <input type="text" onChange={handlePasswordChange} value={password}/></label>
                 <input type="submit" value={submitButton}/>
             </form>
-        </h1>
+        </div>
     )
 }
