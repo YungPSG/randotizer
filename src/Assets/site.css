@@ -1,9 +1,39 @@
+/* Global styles */
+.content {
+    margin-top: 1rem;
+}
+
+.color-nav {
+    background-color: #073642;
+    
+}
+
+.nav-text-solar {
+    font-family: 'Roboto', sans-serif;
+    color: #93a1a1 !important;
+}
+
+/* Login Portal styles */
+
 .login-form {
+    margin-top: 10%;
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    width: 25%;
+    margin-left: 40%;
+}
+
+.login-input {
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .login-form-wrapper {
-    width: 10rem;
+    width: 100%;
+}
+
+.login-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -10,7 +10,9 @@ export class App extends React.Component {
         return (
             <>
                 <Header />
-                <Login />
+                <div className="content">
+                    <Login />
+                </div>
             </>
             
         );
