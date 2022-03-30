@@ -68,3 +68,16 @@
 .home-page-wrapper {
     color: #fdf6e3 !important;
 }
+
+.hero-list-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    margin-left: 7.5%;
+}
+
+.home-hero-icon {
+    width: 90px;
+    height: 50px;
+}
