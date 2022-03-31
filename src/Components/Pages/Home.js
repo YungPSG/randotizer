@@ -6,8 +6,10 @@ import HeroThumb from '../Heros/HeroThumb';
 
 export default function Home() {  
     const [heroList, setHeroList] = useState([]);
+    
+    const [filteredHeroType, setFilteredHeroType] = useState('');
+
     const [imgList, setImgList] = useState([]);
-    const [imgBaseUrl, setImgBaseUrl] = useState("https://cdn.cloudflare.steamstatic.com");
     const [randomHeroId, setRandomHeroId] = useState(Math.floor(Math.random() * 137));
     const [isInactive, setIsInactive] = useState('home-hero-icon');
 
@@ -47,6 +49,17 @@ export default function Home() {
         setIsInactive('home-hero-icon');  
     }
 
+    function handleSetHeroFilter(attributeFilter) {
+        // unsetting the filter if this gets called with the active filter
+        // allows the button to function like a toggle
+        if(attributeFilter === filteredHeroType) {
+            setFilteredHeroType('')
+        } else {
+            setFilteredHeroType(attributeFilter)
+        }
+        console.log(filteredHeroType)
+    }
+
     return (
         <div className="home-page-wrapper">
             <h1 className="nav-text-solar home-page-header">Home Page</h1>
@@ -55,11 +68,23 @@ export default function Home() {
                 <button className="randotizer-button" onClick={randomHero}>Random</button>
                 <button className="randotizer-button" onClick={clearRandom}>Clear</button>
             </div>
+            <br/>
+                { imgList.length &&
+                    (
+                    <div className='hero-filter-buttons'>
+                        <button className={(filteredHeroType == 'str' ? "active" : "") + " filter-button"} onClick={()=>handleSetHeroFilter('str')}>Strength</button>
+                        <button className={(filteredHeroType == 'agi' ? "active" : "") + " filter-button"} onClick={()=>handleSetHeroFilter('agi')}>Agility</button>
+                        <button className={(filteredHeroType == 'int' ? "active" : "") + " filter-button"} onClick={()=>handleSetHeroFilter('int')}>Intelligence</button>
+                    </div>
+                )}
             <div className='hero-list-wrapper'>
                 {imgList&&
-                    imgList.map((hero) => ( 
-                        <HeroThumb hero={hero} isInactive={isInactive} />
-                    ))        
+                    imgList.map((hero) => {
+                        if(filteredHeroType === '' || hero.primary_attr === filteredHeroType)
+                            return (
+                                <HeroThumb hero={hero} isInactive={isInactive} />
+                            )
+                        })        
                 }
             </div>
         </div>
