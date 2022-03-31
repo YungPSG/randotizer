@@ -2,10 +2,7 @@ import { IMAGE_BASE_URL} from '../API/Constants'
 
 // wrapper component to display a hero thumbnail
 export default function HeroThumb(props) {
-    console.log(props)
     const { hero, isInactive} = props
-    console.log(hero.img)
-
 
     return (
         <div key={hero.id} className={'home-hero-icon'}> 

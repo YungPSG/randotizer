@@ -13,18 +13,18 @@ export default function Home() {
     const [randomHeroId, setRandomHeroId] = useState(Math.floor(Math.random() * 137));
     const [isInactive, setIsInactive] = useState('home-hero-icon');
 
-    // useEffect(() => {
-    //     handleGetHeroImages();
-    // }, [])
+    useEffect(() => {
+        handleGetHeroImages();
+    }, [])
 
     function handleGetHeroImages()
     {
+        console.log('handleGetHeroImages()')
         fetch(OPENDOTA_BASE_URL + API_HERO_PATH)
         .then(res => res.json())
         .then(
             (result) => {
                 setImgList(result);
-                console.log(result)
             },
             (error) => {
                 console.log(error);
@@ -44,9 +44,10 @@ export default function Home() {
         }
     }
 
-    function clearRandom()
+    function clearState()
     {
         setIsInactive('home-hero-icon');  
+        setFilteredHeroType('');
     }
 
     function handleSetHeroFilter(attributeFilter) {
@@ -57,16 +58,15 @@ export default function Home() {
         } else {
             setFilteredHeroType(attributeFilter)
         }
-        console.log(filteredHeroType)
     }
 
     return (
         <div className="home-page-wrapper">
             <h1 className="nav-text-solar home-page-header">Home Page</h1>
             <div className='home-page-buttons'>
-                <button className="randotizer-button" onClick={handleGetHeroImages}>Show Heros</button>
+                {/* <button className="randotizer-button" onClick={handleGetHeroImages}>Show Heros</button> */}
                 <button className="randotizer-button" onClick={randomHero}>Random</button>
-                <button className="randotizer-button" onClick={clearRandom}>Clear</button>
+                <button className="randotizer-button" onClick={clearState}>Clear</button>
             </div>
             <br/>
                 { imgList.length &&
