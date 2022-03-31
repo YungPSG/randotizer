@@ -1,5 +1,9 @@
 import React, {useState, useEffect } from 'react';
 
+import { OPENDOTA_BASE_URL, API_HERO_PATH } from '../API/Constants'
+
+import HeroThumb from '../Heros/HeroThumb';
+
 export default function Home() {  
     const [heroList, setHeroList] = useState([]);
     const [imgList, setImgList] = useState([]);
@@ -13,11 +17,12 @@ export default function Home() {
 
     function handleGetHeroImages()
     {
-        fetch("https://api.opendota.com/api/heroStats")
+        fetch(OPENDOTA_BASE_URL + API_HERO_PATH)
         .then(res => res.json())
         .then(
             (result) => {
                 setImgList(result);
+                console.log(result)
             },
             (error) => {
                 console.log(error);
@@ -53,9 +58,7 @@ export default function Home() {
             <div className='hero-list-wrapper'>
                 {imgList&&
                     imgList.map((hero) => ( 
-                        <div key={hero.id}> 
-                            <img id={hero.id} src={imgBaseUrl + hero.img} title={hero.localized_name} alt={hero.localized_name} className={isInactive}></img>
-                        </div>    
+                        <HeroThumb hero={hero} isInactive={isInactive} />
                     ))        
                 }
             </div>
