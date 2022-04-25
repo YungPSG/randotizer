@@ -9,8 +9,6 @@ export default function Home() {
     
     const [filteredHeroType, setFilteredHeroType] = useState('');
 
-    const [imgList, setImgList] = useState([]);
-
     // shows the selected hero
     const [activeHeroId, setActiveHeroId] = useState(-1)
 
@@ -30,7 +28,7 @@ export default function Home() {
                 const ourHeroes = result.map((hero, index) => {
                     return { randotizerId: index + 1, ...hero }
                 })
-                setImgList(ourHeroes);
+                setHeroList(ourHeroes);
                 console.log(ourHeroes)
             },
             (error) => {
@@ -41,7 +39,7 @@ export default function Home() {
 
     function randomHero()
     {
-        const max = imgList.length || 123 // 123 heroes in DOTA as of 04/24/22
+        const max = heroList.length || 123 // 123 heroes in DOTA as of 04/24/22
         const min = 1 // our indexes start at 1
 
         const multiplier = max - min
@@ -78,7 +76,7 @@ export default function Home() {
                 <button className="randotizer-button" onClick={clearState}>Clear</button>
             </div>
             <br/>
-                { imgList.length &&
+                { heroList.length &&
                     (
                     <div className='hero-filter-buttons'>
                         <button className={(filteredHeroType == 'str' ? "active" : "") + " filter-button"} onClick={()=>handleSetHeroFilter('str')}>Strength</button>
@@ -87,8 +85,8 @@ export default function Home() {
                     </div>
                 )}
             <div className='hero-list-wrapper'>
-                {imgList&&
-                    imgList.map((hero) => {
+                {heroList&&
+                    heroList.map((hero) => {
                         const isInactive = activeHeroId > 0 && hero.randotizerId != activeHeroId
                         if(filteredHeroType === '' || hero.primary_attr === filteredHeroType)
                             return (
