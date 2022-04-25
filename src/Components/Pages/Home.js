@@ -10,12 +10,14 @@ export default function Home() {
     const [filteredHeroType, setFilteredHeroType] = useState('');
 
     const [imgList, setImgList] = useState([]);
-    const [randomHeroId, setRandomHeroId] = useState(Math.floor(Math.random() * 137));
-    const [isInactive, setIsInactive] = useState('home-hero-icon');
+
+    // shows the selected hero
+    const [activeHeroId, setActiveHeroId] = useState(-1)
 
     useEffect(() => {
         handleGetHeroImages();
     }, [])
+
 
     function handleGetHeroImages()
     {
@@ -24,7 +26,12 @@ export default function Home() {
         .then(res => res.json())
         .then(
             (result) => {
-                setImgList(result);
+                // the hero IDs provided by this fetch aren't sequential
+                const ourHeroes = result.map((hero, index) => {
+                    return { randotizerId: index + 1, ...hero }
+                })
+                setImgList(ourHeroes);
+                console.log(ourHeroes)
             },
             (error) => {
                 console.log(error);
@@ -34,20 +41,22 @@ export default function Home() {
 
     function randomHero()
     {
-        setRandomHeroId(Math.floor(Math.random() * 137));
+        const max = imgList.length || 123 // 123 heroes in DOTA as of 04/24/22
+        const min = 1 // our indexes start at 1
 
-        for(let i = 1; i < 137; i++) {
-            if(i != randomHeroId)
-            {
-                setIsInactive('home-hero-icon-inactive');              
-            }
-        }
+        const multiplier = max - min
+
+        // add one in case Math.random() returns 0
+        const id = Math.floor(Math.random() * multiplier + min );
+        console.log(id)
+
+        setActiveHeroId(id)
     }
 
     function clearState()
     {
-        setIsInactive('home-hero-icon');  
-        setFilteredHeroType('');
+        setActiveHeroId(-1)
+        setFilteredHeroType('')
     }
 
     function handleSetHeroFilter(attributeFilter) {
@@ -80,6 +89,7 @@ export default function Home() {
             <div className='hero-list-wrapper'>
                 {imgList&&
                     imgList.map((hero) => {
+                        const isInactive = activeHeroId > 0 && hero.randotizerId != activeHeroId
                         if(filteredHeroType === '' || hero.primary_attr === filteredHeroType)
                             return (
                                 <HeroThumb hero={hero} isInactive={isInactive} />
